@@ -40,12 +40,7 @@ public:
 
   void run(std::vector<Instruction> instructions);
 
-  int readReg(int reg_id){
-    if(status_.at(reg_id).checkStatus()){
-      return registers_.at(reg_id);
-    }
-    return readReg(reg_id);
-  }
+  int readReg(int reg_id);
 
 };
 

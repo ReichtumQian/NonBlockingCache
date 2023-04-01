@@ -27,12 +27,26 @@ public:
 
   LoadStatus(): status_(Status::Completed), time_(0) {}
 
+  void resetTime(){
+    time_ = 0;
+  }
+
   int getTime() const{
     return time_;
   }
 
   int addTime(){
     return ++time_;
+  }
+
+  void changeStatus(int step = 1){
+    if(status_ == Status::Completed){
+      return ;
+    }
+    time_ += step;
+    if(time_ > READ_MEMORY_TIME){
+      status_ = Status::Completed;
+    }
   }
 
   void setStatus(Status status){

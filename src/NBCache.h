@@ -11,5 +11,11 @@
 #include "Cache.h"
 
 class NBCache : public Cache{
+private:
+  using Base = Cache;
 
+public:
+  void load(int addr, int* target, LoadStatus* status, bool denpendency = false) override;
+
+  using Base::store;
 };

@@ -7,6 +7,7 @@
  */
 
 #include "CPU.h"
+#include "NBCache.h"
 
 template<class _CacheType>
 void CPU<_CacheType>::run(std::vector<Instruction> instructions){
@@ -18,6 +19,9 @@ void CPU<_CacheType>::run(std::vector<Instruction> instructions){
     int rs2 = inst.rs2;
     int rd = inst.rd;
     int imm = inst.imm;
+    for(size_t i = 0; i < 32; i++){
+      status_.at(i).changeStatus();
+    }
 
     switch(type){
       case InstructionType::Add:
@@ -70,7 +74,16 @@ void CPU<_CacheType>::run(std::vector<Instruction> instructions){
   }
 }
 
+template<>
+int CPU<Cache>::readReg(int reg_id){
+  return registers_.at(reg_id);
+}
 
+template<>
+int CPU<NBCache>::readReg(int reg_id){
+  cache_.load(reg_id, &registers_.at(reg_id), &status_.at(reg_id), true);
+  return registers_.at(reg_id);
+}
 
 template class CPU<Cache>;
 template class CPU<NBCache>;

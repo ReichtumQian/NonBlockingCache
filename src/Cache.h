@@ -13,13 +13,13 @@
 #include "Memory.h"
 
 class Cache{
-private:
+protected:
   std::map<int, int> data_;  // addr -> value
   Memory* memory_;
 
 public:
 
-  void load(int addr, int* target, LoadStatus* status, bool denpendency = false);
+  virtual void load(int addr, int* target, LoadStatus* status, bool denpendency = false);
 
   void store(int addr, int value);
 
