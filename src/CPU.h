@@ -44,10 +44,6 @@ public:
     if(status_.at(reg_id).checkStatus()){
       return registers_.at(reg_id);
     }
-    for(auto& statu : status_){
-      statu.changeStatus(1);
-      ++EXECUTE_TIME;
-    }
     return readReg(reg_id);
   }
 

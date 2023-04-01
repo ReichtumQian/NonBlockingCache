@@ -58,7 +58,7 @@ void CPU<_CacheType>::run(std::vector<Instruction> instructions){
         std::cout << "Instruction: Load " << rd << " " << imm << std::endl;
         std::cout << "TIME: " << EXECUTE_TIME << std::endl;
         ++EXECUTE_TIME;
-        cache_.load(imm, &registers_.at(rd), &status_.at(rd), false);
+        cache_.load(imm, &registers_.at(rd), &status_.at(rd));
         break;
       case InstructionType::Store:
         std::cout << "Instruction: Store " << rd << " " << imm << std::endl;

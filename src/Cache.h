@@ -19,7 +19,7 @@ private:
 
 public:
 
-  int load(int addr, int* target, LoadStatus* status, bool dependency = false);
+  void load(int addr, int* target, LoadStatus* status, bool denpendency = false);
 
   void store(int addr, int value);
 
