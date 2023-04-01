@@ -1,0 +1,19 @@
+set(SRC_FILES
+  Cache.cpp
+  Cache.h
+  Config.h
+  CPU.cpp
+  CPU.h
+  Instruction.h
+  LoadStatus.h
+  Memory.cpp
+  Memory.h
+  NBCache.cpp
+  NBCache.h
+)
+
+add_library(
+  SRC
+  STATIC
+  ${SRC_FILES}
+)
