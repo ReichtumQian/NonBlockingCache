@@ -12,6 +12,7 @@
 #include <array>
 #include "Instruction.h"
 #include "Cache.h"
+#include "NBCache.h"
 
 
 template<class _CacheType>

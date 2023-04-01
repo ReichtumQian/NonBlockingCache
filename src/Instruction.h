@@ -22,7 +22,6 @@ enum class InstructionType{
 };
 
 struct Instruction{
-  int address;  // address of the instruction, step is 1
   InstructionType type;
   int rs1 = 0;
   int rs2 = 0;

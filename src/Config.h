@@ -9,7 +9,7 @@
 #pragma once
 
 static constexpr int MEMORY_SIZE = 1024;
-static constexpr int CACHE_SIZE = 16;
+static constexpr int READ_MEMORY_TIME = 3;
 
-
-
+static int STALL_TIME = 0;
+static int EXECUTE_TIME = 0;
