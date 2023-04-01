@@ -18,19 +18,20 @@ enum class InstructionType{
   Beq,
   Bne,
   Add,
-  Sub
+  Sub,
+  Addi,
+  Subi
 };
 
 struct Instruction{
-  InstructionType type;
+  InstructionType type = InstructionType::Load;
   int rs1 = 0;
   int rs2 = 0;
   int rd = 0;
   int imm = 0;
 
-  Instruction(std::string inst){
+  Instruction() = default;
 
-  }
 
 };
 
