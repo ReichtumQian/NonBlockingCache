@@ -28,6 +28,9 @@ public:
   LoadStatus(): status_(Status::Completed), time_(0) {}
 
   void changeStatus(int step = 1){
+    if(status_ == Status::Completed){
+      return;
+    }
     time_ += step;
     if(time_ >= READ_MEMORY_TIME){
       status_ = Status::Completed;
