@@ -26,7 +26,7 @@ struct Instruction{
   int rs1 = 0;
   int rs2 = 0;
   int rd = 0;
-  int mem_addr = 0;
+  int imm = 0;
 
   Instruction(std::string inst){
 

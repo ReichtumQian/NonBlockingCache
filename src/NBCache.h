@@ -10,6 +10,6 @@
 
 #include "Cache.h"
 
-class NBChache : public Cache{
+class NBCache : public Cache{
 
 };

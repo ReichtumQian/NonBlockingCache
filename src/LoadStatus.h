@@ -12,6 +12,7 @@
 
 
 class LoadStatus{
+
 public:
   enum class Status{
     Completed,
@@ -19,16 +20,22 @@ public:
   };
 
 private:
-  int time = 0;
+  Status status_;
+  int time_ = 0;
 
 public:
 
+  LoadStatus(): status_(Status::Completed), time_(0) {}
+
   void changeStatus(int step = 1){
-    time += step;
+    time_ += step;
+    if(time_ >= READ_MEMORY_TIME){
+      status_ = Status::Completed;
+    }
   }
 
   bool checkStatus() const{
-    return time >= READ_MEMORY_TIME;
+    return status_ == Status::Completed;
   }
 
 
