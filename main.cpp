@@ -7,7 +7,6 @@
  */
 
 
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -92,6 +91,9 @@ Instruction constructInstruction(std::string inst){
     lineStream >> word;
     result.imm = std::stoi(word);
   }
+  else if(word == ""){
+
+  }
   else{
     std::cerr << "Invalid instruction" << std::endl;
   }
@@ -109,6 +111,8 @@ int main(){
     instructions.push_back(constructInstruction(line));
   }
   // test normal cache
+  std::cout << "=====================================" << std::endl;
+  std::cout << "========  TEST: Normal Cache =======" << std::endl;
   STALL_TIME = 0;
   EXECUTE_TIME = 0;
   CPU<Cache> cpu1;
@@ -116,6 +120,8 @@ int main(){
   std::cout << "Total stall time: " << STALL_TIME << std::endl;
   std::cout << "Total execute time: " << EXECUTE_TIME << std::endl;
   // test non-blocking cache
+  std::cout << "=====================================" << std::endl;
+  std::cout << "=====  TEST: Non-blocking Cache ====" << std::endl;
   STALL_TIME = 0;
   EXECUTE_TIME = 0;
   CPU<NBCache> cpu2;

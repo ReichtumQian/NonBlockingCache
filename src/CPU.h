@@ -38,7 +38,7 @@ public:
 
 public:
 
-  void run(std::vector<Instruction> instructions);
+  void run(const std::vector<Instruction>& instructions);
 
   int readReg(int reg_id);
 

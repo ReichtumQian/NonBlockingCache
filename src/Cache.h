@@ -18,6 +18,11 @@ protected:
   Memory* memory_;
 
 public:
+  Cache(): data_(){
+    memory_ = new Memory();
+  }
+
+  Cache(Memory* memory): memory_(memory) {}
 
   virtual void load(int addr, int* target, LoadStatus* status, bool denpendency = false);
 

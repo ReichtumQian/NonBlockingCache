@@ -1,6 +1,7 @@
 set(SRC_FILES
   Cache.cpp
   Cache.h
+  Config.cpp
   Config.h
   CPU.cpp
   CPU.h
