@@ -11,7 +11,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "Config.h"
 #include "Instruction.h"
+#include "NBCache.h"
 #include "src/CPU.h"
 
 static constexpr int LINE_SIZE = 100;
@@ -101,9 +103,26 @@ Instruction constructInstruction(std::string inst){
 int main(){
   // init instruction
   std::ifstream file("instruction");
+  std::vector<Instruction> instructions;
   std::string line;
   while(std::getline(file, line)){
+    instructions.push_back(constructInstruction(line));
   }
+  // test normal cache
+  STALL_TIME = 0;
+  EXECUTE_TIME = 0;
+  CPU<Cache> cpu1;
+  cpu1.run(instructions);
+  std::cout << "Total stall time: " << STALL_TIME << std::endl;
+  std::cout << "Total execute time: " << EXECUTE_TIME << std::endl;
+  // test non-blocking cache
+  STALL_TIME = 0;
+  EXECUTE_TIME = 0;
+  CPU<NBCache> cpu2;
+  cpu2.run(instructions);
+  std::cout << "Total stall time: " << STALL_TIME << std::endl;
+  std::cout << "Total execute time: " << EXECUTE_TIME << std::endl;
+
   return 0;
 }
 
