@@ -66,7 +66,7 @@ void CPU<_CacheType>::run(const std::vector<Instruction>& instructions){
       case InstructionType::Load:
         std::cout << "TIME: " << EXECUTE_TIME << std::endl;
         std::cout << "Instruction: ld x" << rd << ", " << imm << std::endl;
-        cache_.load(imm, &registers_.at(rd), &status_.at(rd));
+        cache_.load(imm, &registers_.at(rd), &status_[0], rd);
         break;
       case InstructionType::Store:
         std::cout << "TIME: " << EXECUTE_TIME << std::endl;
@@ -86,7 +86,7 @@ int CPU<Cache>::readReg(int reg_id){
 template<>
 int CPU<NBCache>::readReg(int reg_id){
   if(reg_id == 0) return 0;
-  cache_.load(reg_id, &registers_.at(reg_id), &status_.at(reg_id), true);
+  cache_.load(reg_id, &registers_.at(reg_id), &status_.at(0), reg_id, true);
   return registers_.at(reg_id);
 }
 

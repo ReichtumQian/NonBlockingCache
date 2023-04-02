@@ -9,7 +9,7 @@
 #include "NBCache.h"
 
 
-void NBCache::load(int addr, int* target, LoadStatus* status, bool dependency){
+void NBCache::load(int addr, int* target, LoadStatus* status, int status_id, bool dependency){
   // cache hit
   if(data_.find(addr) != data_.end()){
     *target = data_[addr];
@@ -17,19 +17,22 @@ void NBCache::load(int addr, int* target, LoadStatus* status, bool dependency){
     return ;
   }
   // cache miss
+  status[status_id].setStatus(LoadStatus::Status::Waiting);
   // if there is data dependency, stall
   if(dependency){
-    while(status->getTime() <= READ_MEMORY_TIME){
-      status->addTime();
+    while(status[status_id].getTime() <= READ_MEMORY_TIME){
+      for(int i = 1; i < NUM_REGISTER; ++i){
+        status[i].changeStatus();
+      }
       ++STALL_TIME;
       ++EXECUTE_TIME;
     }
     *target = memory_->read(addr);
-    status->setStatus(LoadStatus::Status::Completed);
+    status[status_id].setStatus(LoadStatus::Status::Completed);
   }
   // if there is no data dependency, not stall
   else{
-    status->setStatus(LoadStatus::Status::Waiting);
+    status[status_id].setStatus(LoadStatus::Status::Waiting);
   }
 }
 

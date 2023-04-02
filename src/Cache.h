@@ -24,7 +24,7 @@ public:
 
   Cache(Memory* memory): memory_(memory) {}
 
-  virtual void load(int addr, int* target, LoadStatus* status, bool denpendency = false);
+  virtual void load(int addr, int* target, LoadStatus* status, int status_id, bool denpendency = false);
 
   void store(int addr, int value);
 

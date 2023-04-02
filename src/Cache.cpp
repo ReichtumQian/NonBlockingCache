@@ -10,19 +10,22 @@
 #include "Config.h"
 #include "LoadStatus.h"
 
-void Cache::load(int addr, int* target, LoadStatus* status, bool denpendency){
+void Cache::load(int addr, int* target, LoadStatus* status, int status_id, bool denpendency){
   if(data_.find(addr) != data_.end()){
     *target = data_[addr];
     status->setStatus(LoadStatus::Status::Completed);
     return ;
   }
-  while(status->getTime() < READ_MEMORY_TIME){
-    status->addTime();
+  status[status_id].setStatus(LoadStatus::Status::Waiting);
+  while(status[status_id].getTime() < READ_MEMORY_TIME){
+    for(int i = 1; i < NUM_REGISTER; ++i){
+      status[i].changeStatus();
+    }
     ++STALL_TIME;
     ++EXECUTE_TIME;
   }
   *target = memory_->read(addr);
-  status->setStatus(LoadStatus::Status::Completed);
+  status[status_id].setStatus(LoadStatus::Status::Completed);
 }
 
 void Cache::store(int addr, int value){

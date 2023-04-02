@@ -15,7 +15,7 @@ private:
   using Base = Cache;
 
 public:
-  void load(int addr, int* target, LoadStatus* status, bool denpendency = false) override;
+  void load(int addr, int* target, LoadStatus* status, int status_id, bool denpendency = false) override;
 
   using Base::store;
 };
