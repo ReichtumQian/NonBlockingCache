@@ -26,7 +26,7 @@ void Cache::load(int addr, int* target, LoadStatus* status, bool denpendency){
 }
 
 void Cache::store(int addr, int value){
-  data_[addr] = value;
+  // data_[addr] = value;
   memory_->write(addr, value);
 }
 
