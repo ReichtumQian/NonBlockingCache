@@ -19,7 +19,7 @@ void NBCache::load(int addr, int* target, LoadStatus* status, bool dependency){
   // cache miss
   // if there is data dependency, stall
   if(dependency){
-    while(status->getTime() < READ_MEMORY_TIME){
+    while(status->getTime() <= READ_MEMORY_TIME){
       status->addTime();
       ++STALL_TIME;
       ++EXECUTE_TIME;

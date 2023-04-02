@@ -85,6 +85,7 @@ int CPU<Cache>::readReg(int reg_id){
 
 template<>
 int CPU<NBCache>::readReg(int reg_id){
+  if(reg_id == 0) return 0;
   cache_.load(reg_id, &registers_.at(reg_id), &status_.at(reg_id), true);
   return registers_.at(reg_id);
 }
